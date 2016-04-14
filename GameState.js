@@ -1,5 +1,3 @@
-game.GameState = function(){};
-
 
 var GameState= {
 
@@ -7,8 +5,7 @@ var GameState= {
 
     },
     create: function () {
-
-
+    	game.state.start("PostGame");
     },
     update: function () {
 

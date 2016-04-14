@@ -1,5 +1,4 @@
 var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gamediv');
-game.MenuState = function(){};
 
 // width and height of game
 var width = 800;
@@ -121,6 +120,6 @@ function rollComplete() {
 
     //This seems to operate too fast, this should be 30 seconds before it starts the new state...
     setTimeout(3000);
-    game.state.start('Game')
+    game.state.start('GameState')
 };
 

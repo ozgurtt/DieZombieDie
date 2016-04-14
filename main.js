@@ -3,7 +3,7 @@
 ///Game.state.add('Boot', Game.Boot);
 //Game.state.add('preload', Game.Preload);
 game.state.add('MenuState', MenuState);
-game.state.add('Game', GameState);
-Game.state.add('PostGame', PostGame);
+game.state.add('GameState', GameState);
+game.state.add('PostGame', PostGame);
 
 game.state.start('MenuState');
