@@ -1,4 +1,4 @@
-    var sprite;
+ var sprite;
     var zombies;
     var bullets;
     var shotsFired = 0;
@@ -14,6 +14,9 @@
     var zombiesString = '';
     var zombiesText;
     var zMap;
+    var score = 0; 
+    var scoreString = '';
+    var scoreText;
     var time = diceVal;
 
     console.log(time);
@@ -48,13 +51,15 @@ var playState = {
         zombies.physicsBodyType = Phaser.Physics.ARCADE;
         //spawns first round of zombies
         spawnZombies();
-        //the shots fired/accuracy and zombies killed
+        //the shots fired/accuracy/score and zombies killed
         shotsFiredString = 'Shots Fired: ';
         shotsFiredText = game.add.text(10, 10, shotsFiredString + shotsFired, { font: '14px Arial', fill: '#ff0044' });
         shotsAccuracyString = 'Shots Accuracy: ';
         shotsAccuracyText = game.add.text(10, 22, shotsAccuracyString + shotsAccuracy, { font: '14px Arial', fill: '#ff0044' });
         zombiesString = 'Zombies Killed: ';
         zombiesText = game.add.text(10, 34, zombiesString + hits, { font: '14px Arial', fill: '#ff0044' });
+        scoreString = 'Score: ';
+        scoreText = game.add.text(10, 46, scoreString + score, { font: '14px Arial', fill: '#ff0044' });
 
         sprite.body.collideWorldBounds = true;
     },
@@ -104,12 +109,14 @@ function spawnZombies() {
         //when a bullet hits a zombie it kills both the bullet and the zombie
         bullet.kill();
         zombie.kill();
-        //changes the accuracy of the player and the zombies killed
+        //changes the accuracy, score, and the zombies killed of the player
         hits++;
         zombiesText.text = zombiesString + hits;
         shotsAccuracy = hits / shotsFired;
         shotsAccuracy = shotsAccuracy * 100;
         shotsAccuracyText.text = shotsAccuracyString + shotsAccuracy.toFixed(0) + '%';
+        score = shotsAccuracy.toFixed(0) * hits;
+        scoreText.text = scoreString + score;
         //onces all the zombies die it will spawn a new set of zombies
         zombieReset--;
         if (zombieReset == 0) {
@@ -136,6 +143,8 @@ function spawnZombies() {
             shotsAccuracy = hits / shotsFired;
             shotsAccuracy = shotsAccuracy * 100;
             shotsAccuracyText.text = shotsAccuracyString + shotsAccuracy.toFixed(0) + '%';
+            score = shotsAccuracy.toFixed(0) * hits;
+            scoreText.text = scoreString + score;
         }
 
     }
