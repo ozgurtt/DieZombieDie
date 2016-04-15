@@ -17,7 +17,7 @@ var menuState = {
         var title = " - DieZomebieDie -";
         var slogan = "Roll the dice. Try to survive.";
         var howToPlay = "How to play:";
-        var instructions = "-Arrow keys to move." + "\n" + "-Spacebar to shoot.";
+        var instructions = "-Arrow keys to move." + "\n" + "-Click to shoot.";
 
 
         // define the title and game instructions styles
