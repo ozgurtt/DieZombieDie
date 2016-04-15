@@ -1,29 +1,10 @@
-var game = new Phaser.Game(1000,600,Phaser.CANVAS,'gamediv');
-game.MenuState = function(){};
-
-// width and height of game
-var width = 800;
-var height = 600;
-
 //global variables go here:
 var timer;
 var diceVal;
 var button;
 var titleDie;
 
-var MenuState = {
-
-    preload:function() {
-
-        game.load.image('zombiehead', 'assets/sprites/zombie-head.png');
-        game.load.image('startButton', 'assets/sprites/rollthedice.png');
-
-
-        // dice spritesheet taken from opengameart.org/content/boardgame-pack
-        // credit to Kenney.nl
-        game.load.spritesheet('dice', 'assets/sprites/diceRed.png', 64, 64);
-
-    },
+var menuState = {
 
     create:function() {
 
@@ -55,39 +36,26 @@ var MenuState = {
 
         game.input.onDown.addOnce(rollComplete, this);
 
+        game.input.onDown.addOnce(this.start, this);
 
-
-
-
+        console.log(diceVal);
 
     },
 
 
-    update:function() {
+    update: function() {
         
         titleDie.frame = game.rnd.pick([0,1,2,4,5,6]);
 
         
+    },
+
+    start: function() {
+
+        game.state.start('play');
     }
 
 }
-
-
-//currently unused function
-function roll() {
-
-    var titleDie = game.add.sprite(800, 195, 'dice');
-
-    var frames = [];
-    for (var i=0; i < 1000; i++) {
-        frames[i] = game.rnd.pick([0,1,2,4,5,6]);
-    }
-
-    titleDie.animations.add('roll', frames);
-    titleDie.animations.play('roll', 500);
-
-
-};
 
 function rollComplete() {
 
@@ -119,8 +87,5 @@ function rollComplete() {
             break;
     }
 
-    //This seems to operate too fast, this should be 30 seconds before it starts the new state...
-    setTimeout(3000);
-    game.state.start('Game')
 };
 
