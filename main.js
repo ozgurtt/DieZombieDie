@@ -1,10 +1,11 @@
-﻿var game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+﻿var game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update});
 
 function preload() {
     //loads the images for the bullet and the player
-    game.load.image('player', 'assets/sprites/beball1.png');
-    game.load.image('bullet', 'assets/sprites/enemy-bullet.png');
+    game.load.image('player', 'assets/sprites/player.png');
+    game.load.image('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombie', 'assets/sprites/zombieSprite.png');
+    game.load.image('map', 'assets/sprites/zombieSoccer.png');
 }
 
 var sprite;
@@ -22,13 +23,14 @@ var nextFire = 0;
 var zombieReset = 16;
 var zombiesString = '';
 var zombiesText;
+var zMap;
 
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
     //////game.physics.startSystem(Phaser.Physics.P2JS);
     //the background
-    game.stage.backgroundColor = '#000000';
+    zMap = game.add.tileSprite(0, 0, 1000, 600, 'map');
     /////game.world.setBounds(0,0,1000, 600);
     //the bullet group
     bullets = game.add.group();
@@ -39,7 +41,7 @@ function create() {
     bullets.setAll('outOfBoundsKill', true);    
     //the player spawns middle of the map
     sprite = game.add.sprite(500, 300, 'player');
-    sprite.scale.set(.75); //sets the size of the player
+    sprite.scale.set(.5); //sets the size of the player
     sprite.anchor.set(0.5);
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.allowRotation = false;
@@ -52,20 +54,22 @@ function create() {
     spawnZombies();
     //the shots fired/accuracy and zombies killed
     shotsFiredString = 'Shots Fired: ';
-    shotsFiredText = game.add.text(10, 10, shotsFiredString + shotsFired, { font: '14px Arial', fill: '#fff' });
+    shotsFiredText = game.add.text(10, 10, shotsFiredString + shotsFired, { font: '14px Arial', fill: '#ff0044' });
     shotsAccuracyString = 'Shots Accuracy: ';
-    shotsAccuracyText = game.add.text(10, 22, shotsAccuracyString + shotsAccuracy, { font: '14px Arial', fill: '#fff' });
+    shotsAccuracyText = game.add.text(10, 22, shotsAccuracyString + shotsAccuracy, { font: '14px Arial', fill: '#ff0044' });
     zombiesString = 'Zombies Killed: ';
-    zombiesText = game.add.text(10, 34, zombiesString + hits, { font: '14px Arial', fill: '#fff' });
+    zombiesText = game.add.text(10, 34, zombiesString + hits, { font: '14px Arial', fill: '#ff0044' });
+
+    sprite.body.collideWorldBounds = true;
 }
 
 function spawnZombies() {
     // spawns 3x2 zombies randomly spawned on the bottom and the top of the screen
     for (var count = 0; count < 8; count++) {
         var newZombie = zombies.create(game.rnd.integerInRange(100, 900), game.rnd.integerInRange(50, 100), 'zombie');
-        newZombie.scale.set(.75);
+        newZombie.scale.set(.5);
         var newZombie = zombies.create(game.rnd.integerInRange(100, 900), game.rnd.integerInRange(500, 550), 'zombie');
-        newZombie.scale.set(.75);
+        newZombie.scale.set(.5);
     }
 }
 
@@ -137,10 +141,4 @@ function shoot() {
 
 }
 
-function render() {
-    //used for debugging
-    //game.debug.text('Active Bullets: ' + bullets.countLiving(), 32, 32);
-    //game.debug.text('Bullets Fired: ' + bullets.countDead(), 32, 42);
-    
-}
 
