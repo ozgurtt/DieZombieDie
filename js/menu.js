@@ -1,8 +1,5 @@
-//global variables go here:
-var timer;
-var diceVal;
-var button;
 var titleDie;
+var rand;
 
 var menuState = {
 
@@ -33,12 +30,18 @@ var menuState = {
         var ins = game.add.text(game.world.centerX, 185, instructions, instructionsStyle);
 
         titleDie = game.add.sprite(800, 195, 'dice');
+        rand = game.rnd.pick([1,2,3,4,5,6]);
 
-        game.input.onDown.addOnce(rollComplete, this);
 
-        game.input.onDown.addOnce(this.start, this);
+        globalDiceVal = rand;
+        rand = globalDiceVal;
 
-        console.log(diceVal);
+        game.input.onDown.addOnce(displayDieResult);
+
+        game.input.onDown.addOnce(this.start);
+        
+
+        console.log(globalDiceVal);
 
     },
 
@@ -46,7 +49,6 @@ var menuState = {
     update: function() {
         
         titleDie.frame = game.rnd.pick([0,1,2,4,5,6]);
-
         
     },
 
@@ -57,35 +59,43 @@ var menuState = {
 
 }
 
-function rollComplete() {
 
-    var titleDie = game.add.sprite(800, 195, 'dice');
-    titleDie.animations.stop(null, true);
-    titleDie.frame = game.rnd.pick([0,1,2,4,5,6]);
+function displayDieResult() {
 
-    switch(titleDie.frame) {
-        case 0:
-            diceVal = 6;
-            break;
-        case 1:
-            diceVal = 1;
-            break;
-        case 2:
-            diceVal = 2;
-            break;
-        case 4:
-            diceVal = 5;
-            break;
-        case 5:
-            diceVal = 3;
-            break;
-        case 6:
-            diceVal = 4;
-            break;
-        default:
-            return null;
-            break;
+   var titleDie = game.add.sprite(800, 195, 'dice')
+   titleDie.animations.stop(null, true);
+
+    if (globalDiceVal == 1)
+    {
+        titleDie.frame = 1;
+            
     }
+    else if(globalDiceVal == 2)
+    {
+        titleDie.frame = 2;
+            
+    }
+    else if(globalDiceVal == 3)
+    {
+        titleDie.frame = 5;  
+            
+    }
+    else if(globalDiceVal == 4)
+    {
+        titleDie.frame = 6;
+            
+    }
+    else if(globalDiceVal == 5)
+    {
+        titleDie.frame = 4;
+            
+    }
+    else if(globalDiceVal == 6)
+    {
+        titleDie.frame = 0;
+            
+    }
+
 
 };
 

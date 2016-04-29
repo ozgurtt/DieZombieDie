@@ -1,3 +1,9 @@
+//global var for dice val
+var globalDiceVal = 5;
+//global scoreholder val
+var scoreHolder = 0;
+
+
 var loadState = {
 
 

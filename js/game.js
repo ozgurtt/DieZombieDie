@@ -1,6 +1,5 @@
 var game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'gamediv')
 
-
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);

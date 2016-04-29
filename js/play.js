@@ -17,9 +17,12 @@
     var score = 0; 
     var scoreString = '';
     var scoreText;
-    var time = diceVal;
-
-    console.log(time);
+    //var time = globalDiceVal;
+    var seconds = 0;
+    var secondHolder = 60;
+    var minutes = 0;
+    var timeText = 0;
+    //console.log(time);
 
 
 var playState = {
@@ -53,15 +56,18 @@ var playState = {
         spawnZombies();
         //the shots fired/accuracy/score and zombies killed
         shotsFiredString = 'Shots Fired: ';
-        shotsFiredText = game.add.text(10, 10, shotsFiredString + shotsFired, { font: '14px Arial', fill: '#ff0044' });
+        shotsFiredText = game.add.text(10, 14, shotsFiredString + shotsFired, { font: '14px Arial', fill: '#ff0044' });
         shotsAccuracyString = 'Shots Accuracy: ';
-        shotsAccuracyText = game.add.text(10, 22, shotsAccuracyString + shotsAccuracy, { font: '14px Arial', fill: '#ff0044' });
+        shotsAccuracyText = game.add.text(10, 26, shotsAccuracyString + shotsAccuracy, { font: '14px Arial', fill: '#ff0044' });
         zombiesString = 'Zombies Killed: ';
-        zombiesText = game.add.text(10, 34, zombiesString + hits, { font: '14px Arial', fill: '#ff0044' });
+        zombiesText = game.add.text(10, 38, zombiesString + hits, { font: '14px Arial', fill: '#ff0044' });
         scoreString = 'Score: ';
-        scoreText = game.add.text(10, 46, scoreString + score, { font: '14px Arial', fill: '#ff0044' });
+        scoreText = game.add.text(10, 50, scoreString + score, { font: '14px Arial', fill: '#ff0044' });
 
         sprite.body.collideWorldBounds = true;
+        //add timer text and event
+        timeText = game.add.text(10, 1, 'Time: '+globalDiceVal+':00', { font: "16px Arial", fill: "#000000" });
+        game.time.events.loop(Phaser.Timer.SECOND * 1, addTime, this);
     },
 
     
@@ -93,6 +99,7 @@ var playState = {
             game.physics.arcade.overlap(sprite, zombies, playerDamage, null, this);
         }
     }
+
 }
 
 function spawnZombies() {
@@ -128,6 +135,7 @@ function spawnZombies() {
     function playerDamage(hero, zombie) {
         //when the player touches the zombie it kills the player
         hero.kill();
+        reset();
         game.state.start('end')
     }
 
@@ -148,4 +156,49 @@ function spawnZombies() {
             scoreText.text = scoreString + score;
         }
 
+    }
+
+    function addTime() {//updates the timer using phaser time event every second
+        if (minutes == 0) {
+            minutes++;
+        }
+
+        if (minutes == (globalDiceVal + 1)) {
+            reset();
+            endGame();
+        }
+        else {
+            if (seconds < 60) {
+                seconds++;
+            }
+            else {
+                seconds = 1;
+                minutes++;
+                secondsHolder = 59;
+            }
+            
+            if ((secondHolder - seconds) < 10) {
+                timeText.setText('Time: ' + (globalDiceVal - minutes) + ':' + '0' + (secondHolder - seconds));
+            }
+            else {
+                timeText.setText('Time: ' + (globalDiceVal - minutes) + ':' + (secondHolder - seconds));
+            }
+            if (minutes > globalDiceVal) {
+                timeText.setText('Time: 0:00');
+            }
+        }
+    }
+
+    function reset() {//resets all the stats so if they start another game it will have fresh stats
+        scoreHolder = score;
+        shotsFired = 0;
+        hits = 0;
+        zombieReset = 16;
+        score = 0;
+        shotsAccuracy = 0;
+        secondHolder = 60;
+    }
+
+    function endGame() {
+        game.state.start('end')
     }
