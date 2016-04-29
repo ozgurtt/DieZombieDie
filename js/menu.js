@@ -1,5 +1,6 @@
 var titleDie;
 var rand;
+var rolled = false;
 
 var menuState = {
 
@@ -14,7 +15,7 @@ var menuState = {
         var title = " - DieZomebieDie -";
         var slogan = "Roll the dice. Try to survive.";
         var howToPlay = "How to play:";
-        var instructions = "-Arrow keys to move." + "\n" + "-Click to shoot.";
+        var instructions = "-WASD to move" + "\n" + "-Click to shoot." + "\n" + "-Space to roll the dice" + "\n" + "-Click anywhere to start the game.";
 
 
         // define the title and game instructions styles
@@ -29,16 +30,19 @@ var menuState = {
         var htp = game.add.text(game.world.centerX-50, 150, howToPlay, instructionsStyle);
         var ins = game.add.text(game.world.centerX, 185, instructions, instructionsStyle);
 
-        titleDie = game.add.sprite(800, 195, 'dice');
+        titleDie = game.add.sprite(700, 391, 'dice');
         rand = game.rnd.pick([1,2,3,4,5,6]);
 
 
         globalDiceVal = rand;
         rand = globalDiceVal;
 
-        game.input.onDown.addOnce(displayDieResult);
+        key1 = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        key1.onDown.add(displayDieResult, this);
+
 
         game.input.onDown.addOnce(this.start);
+
         
 
         console.log(globalDiceVal);
@@ -62,40 +66,41 @@ var menuState = {
 
 function displayDieResult() {
 
-   var titleDie = game.add.sprite(800, 195, 'dice')
-   titleDie.animations.stop(null, true);
+   var ntitleDie = game.add.sprite(700, 391, 'dice')
+   ntitleDie.animations.stop(null, true);
 
     if (globalDiceVal == 1)
     {
-        titleDie.frame = 1;
+        ntitleDie.frame = 1;
             
     }
     else if(globalDiceVal == 2)
     {
-        titleDie.frame = 2;
+        ntitleDie.frame = 2;
             
     }
     else if(globalDiceVal == 3)
     {
-        titleDie.frame = 5;  
+        ntitleDie.frame = 5;  
             
     }
     else if(globalDiceVal == 4)
     {
-        titleDie.frame = 6;
+        ntitleDie.frame = 6;
             
     }
     else if(globalDiceVal == 5)
     {
-        titleDie.frame = 4;
+        ntitleDie.frame = 4;
             
     }
     else if(globalDiceVal == 6)
     {
-        titleDie.frame = 0;
+        ntitleDie.frame = 0;
             
     }
 
+    rolled = true;
 
 };
 
