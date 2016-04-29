@@ -160,7 +160,7 @@ function spawnZombies() {
     }
 
     function addTime() {//updates the timer using phaser time event every second
-        if (seconds == 0) {
+        if (minutes == 0) {
             minutes++;
         }
 
@@ -168,20 +168,25 @@ function spawnZombies() {
             reset();
             endGame();
         }
-
-        if (seconds < 60) {
-            seconds++;
-        }
         else {
-            seconds = 0;
-            secondsHolder = 59;
-        }
-
-        if ((secondHolder - seconds) < 10) {
-            timeText.setText('Time: ' + (diceVal - minutes) + ':' + '0' + (secondHolder - seconds));
-        }
-        else {
-            timeText.setText('Time: ' + (diceVal - minutes) + ':' + (secondHolder - seconds));
+            if (seconds < 60) {
+                seconds++;
+            }
+            else {
+                seconds = 1;
+                minutes++;
+                secondsHolder = 59;
+            }
+            
+            if ((secondHolder - seconds) < 10) {
+                timeText.setText('Time: ' + (diceVal - minutes) + ':' + '0' + (secondHolder - seconds));
+            }
+            else {
+                timeText.setText('Time: ' + (diceVal - minutes) + ':' + (secondHolder - seconds));
+            }
+            if (minutes > diceVal) {
+                timeText.setText('Time: 0:00');
+            }
         }
     }
 
