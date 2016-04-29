@@ -128,6 +128,7 @@ function spawnZombies() {
     function playerDamage(hero, zombie) {
         //when the player touches the zombie it kills the player
         hero.kill();
+        game.state.start('end')
     }
 
     function shoot() {

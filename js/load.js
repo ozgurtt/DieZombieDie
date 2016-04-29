@@ -9,10 +9,9 @@ var loadState = {
     game.load.image('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombie', 'assets/sprites/zombieSprite.png');
     game.load.image('map', 'assets/sprites/zombieSoccer.png');
-
-
     game.load.image('zombiehead', 'assets/sprites/zombie-head.png');
     game.load.image('startButton', 'assets/sprites/rollthedice.png');
+    game.load.image('restartButton', 'assets/sprites/start.png');
 
 
     // dice spritesheet taken from opengameart.org/content/boardgame-pack
