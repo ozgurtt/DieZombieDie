@@ -1,11 +1,24 @@
-DieZombieDie 2016 Authors: Randel Eng Leo Lacroix Joel Myhre Gabriel Fabian Thomas Wheeler
+DieZombieDie 2016 Authors: 
+1. Randel Eng - Git username: bobalo317
+
+2. Leo Lacroix - Git username: lelacroi
+
+3. Joel Myhre - Git username: bleedblood
+
+4. Gabriel Fabian - Git username: GabrielFabian
+
+5. Thomas Wheeler - Git username: thomassw66
+
 
 DieZombieDie is an Epic top-down 2d zombie survival shooter that will test your nerve and survival skills. 
 
 Install instructions:
 1.	Download the .zip file directly from the master branch of the repo.
+
 2.	Unzip the file in desired directory.
+
 3.	Open index.html in Chrome.
+
 
 How to play:
 
@@ -41,7 +54,12 @@ Features tested by player actions (game started, tester input required) :
 
 
 Overview of Features:
+
 1.	Zombies. Zombies will menace the hero by creepily remaining stationary.
+
 2.	Map. Will include a menacing soccer field of doom.
+
 3.	Sprites! Sprites for all character models will add to the intense and suspenseful immersion in the world of Die Zombie Die.
+
 4.	Timer implementation. Beat the clock and SAVE THE WORLD.
+
