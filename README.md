@@ -1,51 +1,38 @@
-DieZombieDie
-2016
-Authors:
-Randel Eng
-Leo Lacroix
-Joel Myhre
-Gabriel Fabian
-Thomas Wheeler
-
-DieZombieDie is a top-down 2d zombie survival shooter. Beta release scheduled for ~5 weeks
-from today 4/1/2016.
-
-As of now, there is no remote host for DieZombieDie. 
-
-
-To run:
-
-1. Download the .zip file directly from the master branch of the repo.
-2. Unzip the file in desired directory.
-3. Open index.html in preferred web browser.
-
-
+DieZombieDie 2016 Authors: Randel Eng Leo Lacroix Joel Myhre Gabriel Fabian Thomas Wheeler
+DieZombieDie is an Epic top-down 2d zombie survival shooter that will test your nerve and survival skills. 
+Install instructions:
+1.	Download the .zip file directly from the master branch of the repo.
+2.	Unzip the file in desired directory.
+3.	Open index.html in Chrome.
 How to play:
+WASD to move character. Click to shoot in direction of pointer. Eliminate zombies to score points. Survive the round to beat the game.
+Please see priority backlog for indepth documentation on features that are unimplemented as of 4/29/2016.
+Q-Unit Test Instructions:
+1.	Follow install instructions
+2.	Open qUnitTests.html in Chrome.
+3.	Test each feature in game engine, q-unit tests reflect changes in game state.
+Features tested upon load :
+-	Game test – Game state is created and loaded
+-	Game Load state test – Game associates all different game states successfully
+-	Game Menu Test – Game Menu state loads and renders
+-	Dice test – The dice feature loads inside menu state
 
-WASD to move character.
-Click to shoot in direction of pointer.
-Eliminate zombies to score points.
-Survive the round to beat the game.
 
-Please see priority backlog for indepth documentation on features that are
-unimplemented as of 4/15/2016.
-
-
-
-Broad overview of key features in progress:
-
-1. Zombie mobility. At the end of next sprint, the zombies will track 
-and attack the hero instead of remaining stationary.
-
-2. Map update. Will include areas that are unreachable by the hero to improve
-user experience and allow for a higher difficulty and the need for strategy.
-
-3. Map visual update. Currently the soccer field map is a placeholder. When completed
-the map will reflect a more appropriate setting one would expect from a zombie survival
-shooter.
-
-4. Sprite update. Same as above, the sprites being presented at this time are placeholders
-to be updated and replaced to improve user experience.
-
-5. Timer implementation. At this time, beating the game is impossible, as there is no timer.
-The object of the game is to outlive the timer. The next sprint will include this feature. 
+Features tested by player actions (game started, tester input required) :
+-	Zombie Sprite Test – Zombies load on Game state load
+-	Player Sprite Test – Player avatar loaded in Game 
+-	Game Physics Test – game physics mode enabled
+-	Player Score Test – player score is updated
+-	Map Load Test – Map assets are loaded
+-	Timer Test – timer is created and rendered
+-	Accuracy update test – Accuracy is updated as shots are fired
+-	Shooting test – Shooting function is successful
+-	Zombie shot – Zombie is killed upon being shot with bullets
+-	Hero Killed – Hero killed by Zombie Character
+-	Game End State Test – End Game state entered upon losing
+-	Game Restart Button Test – End Game state is entered successfully
+Overview of Features:
+1.	Zombies. Zombies will menace the hero by creepily remaining stationary.
+2.	Map. Will include a menacing soccer field of doom.
+3.	Sprites! Sprites for all character models will add to the intense and suspenseful immersion in the world of Die Zombie Die.
+4.	Timer implementation. Beat the clock and SAVE THE WORLD.
