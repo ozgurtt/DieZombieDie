@@ -1,16 +1,23 @@
 DieZombieDie 2016 Authors: Randel Eng Leo Lacroix Joel Myhre Gabriel Fabian Thomas Wheeler
+
 DieZombieDie is an Epic top-down 2d zombie survival shooter that will test your nerve and survival skills. 
+
 Install instructions:
 1.	Download the .zip file directly from the master branch of the repo.
 2.	Unzip the file in desired directory.
 3.	Open index.html in Chrome.
+
 How to play:
+
 WASD to move character. Click to shoot in direction of pointer. Eliminate zombies to score points. Survive the round to beat the game.
+
 Please see priority backlog for indepth documentation on features that are unimplemented as of 4/29/2016.
+
 Q-Unit Test Instructions:
 1.	Follow install instructions
 2.	Open qUnitTests.html in Chrome.
 3.	Test each feature in game engine, q-unit tests reflect changes in game state.
+
 Features tested upon load :
 -	Game test – Game state is created and loaded
 -	Game Load state test – Game associates all different game states successfully
@@ -31,6 +38,8 @@ Features tested by player actions (game started, tester input required) :
 -	Hero Killed – Hero killed by Zombie Character
 -	Game End State Test – End Game state entered upon losing
 -	Game Restart Button Test – End Game state is entered successfully
+
+
 Overview of Features:
 1.	Zombies. Zombies will menace the hero by creepily remaining stationary.
 2.	Map. Will include a menacing soccer field of doom.
